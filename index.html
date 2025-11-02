@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>대구광역시교육청 | 2026 미디어 리터러시 교육 로드맵</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2rem;
+            padding-left: 2.5rem;
+        }
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: 0;
+            top: 0.25rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+        }
+        .timeline-line {
+            position: absolute;
+            left: 0.6875rem; 
+            top: 1.75rem;
+            bottom: 0;
+            width: 2px;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'dmoe-deep-blue': '#005F73',
+                        'dmoe-blue': '#0A9396',
+                        'dmoe-teal': '#94D2BD',
+                        'dmoe-sand': '#E9D8A6',
+                        'dmoe-yellow': '#EE9B00',
+                        'dmoe-orange': '#CA6702',
+                        'dmoe-red': '#AE2012',
+                        'dmoe-dark-red': '#9B2226',
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans KR', 'sans-serif'],
+                    },
+                },
+            },
+        };
+    </script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <header class="bg-dmoe-deep-blue text-white p-6 shadow-lg">
+        <div class="container mx-auto max-w-6xl">
+            <h1 class="text-3xl md:text-4xl font-black">미디어 리터러시 2.0: AI 시대로의 도약</h1>
+            <p class="text-lg md:text-xl mt-2 text-dmoe-teal">대구광역시교육청 2026년 체계적 교육 로드맵</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto max-w-6xl p-4 md:p-8">
+        
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-dmoe-deep-blue mb-4">1. 지금, 왜 변화가 필요한가?</h2>
+            <p class="text-lg mb-8">현재 대부분의 교육은 '정보 윤리'에 머물러 있습니다. 하지만 생성형 AI의 등장은 미디어 환경을 근본적으로 바꾸고 있습니다. 전국 16개 시도교육청 현황 분석 결과, 대구교육청이 선제적으로 'AI 윤리'와 '효과적 활용'까지 포함하는 체계적 전환을 이끌어야 할 시점입니다.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold text-center mb-4">전국 16개 시도교육청 미디어 교육 현황</h3>
+                    <p class="text-center text-sm text-gray-600 mb-4">대다수 교육청이 여전히 기존 정보 윤리 교육에 머무르고 있으며, 'AI 윤리'를 정규 과정으로 도입한 곳은 극소수입니다.</p>
+                    <div class="chart-container">
+                        <canvas id="mpoeStatusChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold text-center mb-4">학부모 및 교사 핵심 우려 사항</h3>
+                    <p class="text-center text-sm text-gray-600 mb-4">단순한 인터넷 윤리를 넘어, AI가 생성하는 허위정보와 표절 문제가 새로운 교육적 과제로 대두되었습니다.</p>
+                    <div class="chart-container">
+                        <canvas id="keyConcernsChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-dmoe-deep-blue mb-4">2. 새로운 세대의 요구</h2>
+            <p class="text-lg mb-8">학생들은 이미 생성형 AI를 일상적으로 사용하고 있습니다. 이들의 필요는 '하지 마라'는 금지가 아닌, '어떻게 잘 사용할 것인가'에 대한 구체적인 가이드입니다.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="md:col-span-1 bg-white rounded-lg shadow-md p-6 flex flex-col justify-center items-center text-center">
+                    <span class="text-7xl font-black text-dmoe-orange">70%</span>
+                    <p class="text-2xl font-bold mt-2">고등학생의 생성형 AI</p>
+                    <p class="text-lg text-gray-700">숙제 및 자료 조사에 활용 경험</p>
+                    <p class="text-sm text-gray-500 mt-4">(자체 리서치 기반 가상 데이터)</p>
+                </div>
+                
+                <div class="md:col-span-2 bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold text-center mb-4">학생들이 가장 배우고 싶은 내용</h3>
+                    <p class="text-center text-sm text-gray-600 mb-4">학생들은 윤리적 규제(이론)보다 AI를 효과적으로 활용하는 방법(실무)에 대한 교육적 요구가 훨씬 높게 나타났습니다.</p>
+                    <div class="chart-container" style="height: 300px; max-height: 350px;">
+                        <canvas id="studentInterestChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-dmoe-deep-blue mb-4">3. 대구교육청의 4대 핵심 전략</h2>
+            <p class="text-lg mb-8">'정보 윤리'를 넘어, AI 시대의 미디어 리터러시를 완성하기 위한 4가지 핵심 교육 목표를 설정합니다. 이는 비판적 사고, 창의적 활용, 윤리적 책임, 디지털 건강을 모두 포함합니다.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-dmoe-teal bg-opacity-10 border-l-4 border-dmoe-teal p-6 rounded-lg shadow">
+                    <h4 class="text-2xl font-bold text-dmoe-deep-blue mb-2">비판적 사고</h4>
+                    <p class="text-gray-700">미디어 정보와 AI 생성물을 분별하고, 편향성과 신뢰도를 평가하는 능력 (Fact-Checking)</p>
+                </div>
+                <div class="bg-dmoe-yellow bg-opacity-10 border-l-4 border-dmoe-yellow p-6 rounded-lg shadow">
+                    <h4 class="text-2xl font-bold text-dmoe-deep-blue mb-2">효과적 활용</h4>
+                    <p class="text-gray-700">미디어와 AI 도구를 학습 및 문제 해결에 창의적으로 활용하는 능력 (Prompt Engineering)</p>
+                </div>
+                <div class="bg-dmoe-orange bg-opacity-10 border-l-4 border-dmoe-orange p-6 rounded-lg shadow">
+                    <h4 class="text-2xl font-bold text-dmoe-deep-blue mb-2">윤리적 책임</h4>
+                    <p class="text-gray-700">AI 사용 윤리, 저작권, 데이터 프라이버시를 이해하고 책임감 있게 행동하는 태도 (Digital Citizenship)</p>
+                </div>
+                <div class="bg-dmoe-red bg-opacity-10 border-l-4 border-dmoe-red p-6 rounded-lg shadow">
+                    <h4 class="text-2xl font-bold text-dmoe-deep-blue mb-2">디지털 웰빙</h4>
+                    <p class="text-gray-700">디지털 과의존을 예방하고 건강한 미디어 사용 습관을 기르는 자기 관리 능력 (Self-Regulation)</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-dmoe-deep-blue mb-4">4. 2026년을 향한 3단계 로드맵</h2>
+            <p class="text-lg mb-8">성공적인 2026년 전면 시행을 위해, 교원 역량 강화부터 커리큘럼 개발, 시범 적용까지 체계적인 3단계 로드맵을 추진합니다.</p>
+            
+            <div class="bg-white rounded-lg shadow-md p-8">
+                <div class="relative">
+                    <div class="timeline-line bg-dmoe-teal"></div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot bg-dmoe-blue">1</div>
+                        <h4 class="text-2xl font-bold text-dmoe-blue mb-2">Phase 1: 기반 구축 (2025년)</h4>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1">
+                            <li>'AI-미디어 리터러시' 교원 핵심 연수 (필수)</li>
+                            <li>학교급별 표준 교육과정 및 지도안 R&D</li>
+                            <li>전문가 자문단 및 리서치 그룹 발족</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot bg-dmoe-yellow">2</div>
+                        <h4 class="text-2xl font-bold text-dmoe-yellow mb-2">Phase 2: 시범 적용 (2026년 상반기)</h4>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1">
+                            <li>초·중·고 50개교 대상 시범학급 운영</li>
+                            <li>학교급별 맞춤형 교재 및 콘텐츠 보급</li>
+                            <li>시범 운영 피드백 수집 및 커리큘럼 수정</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot bg-dmoe-orange">3</div>
+                        <h4 class="text-2xl font-bold text-dmoe-orange mb-2">Phase 3: 전면 확대 (2026년 하반기 ~)</h4>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1">
+                            <li>대구 전체 초·중·고교 정규/창체 시간 편입</li>
+                            <li>학부모 대상 AI 리터러시 교육 병행</li>
+                            <li>연 1회 성과 평가 및 교육과정 개편</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-3xl font-bold text-dmoe-deep-blue mb-4">5. 학교급별 맞춤형 교육과정 (2026년 시행안)</h2>
+            <p class="text-lg mb-8">학생의 발달 단계에 맞춰 교육 목표를 차별화합니다. 초등학생은 '안전한 놀이터'로서 미디어를, 중학생은 '정보 탐정'으로서 비판적 시각을, 고등학생은 '윤리적 창작자'로서 책임감 있는 활용을 배웁니다.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl shadow-lg p-6 border-t-8 border-dmoe-teal">
+                    <h3 class="text-2xl font-bold text-center mb-4">초등: 디지털 놀이터</h3>
+                    <span class="block text-center text-6xl mb-4">🛡️</span>
+                    <ul class="list-none space-y-2 text-center">
+                        <li class="font-semibold">안전한 검색 배우기</li>
+                        <li>광고와 정보 구별하기</li>
+                        <li>개인정보 보호 기초</li>
+                        <li>디지털 예절 (선플 달기)</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-6 border-t-8 border-dmoe-yellow">
+                    <h3 class="text-2xl font-bold text-center mb-4">중등: 디지털 탐정</h3>
+                    <span class="block text-center text-6xl mb-4">🔎</span>
+                    <ul class="list-none space-y-2 text-center">
+                        <li class="font-semibold">생성형 AI 원리 이해</li>
+                        <li>교차 검증과 팩트체크</li>
+                        <li>알고리즘 편향성 인지</li>
+                        <li>디지털 발자국 관리</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg p-6 border-t-8 border-dmoe-orange">
+                    <h3 class="text-2xl font-bold text-center mb-4">고등: 디지털 창작자</h3>
+                    <span class="block text-center text-6xl mb-4">💡</span>
+                    <ul class="list-none space-y-2 text-center">
+                        <li class="font-semibold">책임감 있는 AI 활용 (Prompt)</li>
+                        <li>AI 윤리와 저작권 토론</li>
+                        <li>딥페이크 등 허위정보 제작 방지</li>
+                        <li>미디어 포트폴리오 제작</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-dmoe-deep-blue text-dmoe-teal text-center p-6 mt-12">
+        <p>© 2025 대구광역시교육청. 이 인포그래픽은 가상의 분석 데이터를 기반으로 작성되었습니다.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                } else {
+                    return label;
+                }
+            };
+            
+            const chartPlugins = {
+                legend: {
+                    labels: {
+                        font: {
+                            family: 'Noto Sans KR'
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    },
+                    bodyFont: {
+                        family: 'Noto Sans KR'
+                    },
+                    titleFont: {
+                        family: 'Noto Sans KR'
+                    }
+                }
+            };
+            
+            const chartScales = {
+                x: {
+                    ticks: {
+                        font: {
+                            family: 'Noto Sans KR'
+                        }
+                    }
+                },
+                y: {
+                    ticks: {
+                        font: {
+                            family: 'Noto Sans KR'
+                        }
+                    }
+                }
+            };
+
+            const processLabels = (labels) => {
+                const maxLen = 16;
+                return labels.map(label => {
+                    if (label.length > maxLen) {
+                        let words = label.split(' ');
+                        let lines = [];
+                        let currentLine = '';
+                        for (let word of words) {
+                            if ((currentLine + word).length > maxLen) {
+                                lines.push(currentLine.trim());
+                                currentLine = word + ' ';
+                            } else {
+                                currentLine += word + ' ';
+                            }
+                        }
+                        lines.push(currentLine.trim());
+                        return lines;
+                    }
+                    return label;
+                });
+            };
+
+            const mpoeCtx = document.getElementById('mpoeStatusChart').getContext('2d');
+            new Chart(mpoeCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['정보 윤리만 운영', '디지털 리터러시 시범', 'AI 윤리 과정 포함'],
+                    datasets: [{
+                        data: [60, 30, 10],
+                        backgroundColor: ['#94D2BD', '#E9D8A6', '#AE2012'],
+                        borderColor: '#ffffff',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: chartPlugins
+                }
+            });
+
+            const keyConcernsCtx = document.getElementById('keyConcernsChart').getContext('2d');
+            const keyConcernsLabels = [
+                '가짜뉴스/허위정보 식별의 어려움', 
+                'AI 표절 및 윤리적 사용 문제', 
+                '개인정보 유출 위험성 증가', 
+                '스크린 타임 및 디지털 중독'
+            ];
+            new Chart(keyConcernsCtx, {
+                type: 'bar',
+                data: {
+                    labels: processLabels(keyConcernsLabels),
+                    datasets: [{
+                        label: '우려 비율 (%)',
+                        data: [85, 72, 60, 45],
+                        backgroundColor: ['#AE2012', '#CA6702', '#EE9B00', '#E9D8A6'],
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    indexAxis: 'x',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: chartPlugins,
+                    scales: chartScales
+                }
+            });
+            
+            const studentInterestCtx = document.getElementById('studentInterestChart').getContext('2d');
+            new Chart(studentInterestCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['AI 효과적 활용법 (실무)', '미디어 콘텐츠 제작 (창작)', 'AI 윤리/책임 (이론)'],
+                    datasets: [{
+                        label: '학생 희망 비율 (%)',
+                        data: [78, 55, 30],
+                        backgroundColor: ['#0A9396', '#94D2BD', '#CA6702'],
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: chartPlugins,
+                    scales: chartScales
+                }
+            });
+        });
+    </script>
+</body>
+</html>
